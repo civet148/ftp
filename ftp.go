@@ -7,7 +7,6 @@ import (
 	"github.com/secsy/goftp"
 	"net/url"
 	"os"
-	"path/filepath"
 	"time"
 )
 
@@ -106,10 +105,9 @@ func NewFtpClient(strUrl string, opts ...*Option) *Client {
 }
 
 func (m *Client) Mkdir(dir string) (err error) {
-	strDir := filepath.Dir(dir)
-	_, err = m.fc.Mkdir(strDir)
+	_, err = m.fc.Mkdir(dir)
 	if err != nil {
-		return log.Errorf("mkdir [%s] error [%s]", strDir, err)
+		return log.Errorf("mkdir [%s] error [%s]", dir, err)
 	}
 	return nil
 }
