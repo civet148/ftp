@@ -107,6 +107,10 @@ func NewFtpClient(strUrl string, opts ...*Option) *Client {
 func (m *Client) Mkdir(dir string) (err error) {
 	_, err = m.fc.Mkdir(dir)
 	if err != nil {
+		ftpErr := err.(goftp.Error)
+		if ftpErr.Code() == 550 {
+			return nil //already exists
+		}
 		return log.Errorf("mkdir [%s] error [%s]", dir, err)
 	}
 	return nil
