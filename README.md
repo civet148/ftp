@@ -65,7 +65,7 @@ var uploadCmd = &cli.Command{
 			Name:    CMD_FLAG_NAME_FTP_URL,
 			Usage:   "ftp url, e.g ftp://user:password@127.0.0.1:21",
 			Aliases: []string{"f"},
-			Value:   types.DEFAULT_FTP_URL,
+			Value:   "ftp://127.0.0.1:21",
 		},
 	},
 	Action: func(cctx *cli.Context) (err error) {
